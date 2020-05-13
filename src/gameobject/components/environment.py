@@ -1,5 +1,6 @@
-from gameobject.gameobject import DrawComponent
 import pygame
+
+from gameobject.gameobject import DrawComponent
 
 
 class BrickComponent(DrawComponent):

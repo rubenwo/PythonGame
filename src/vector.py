@@ -28,8 +28,8 @@ class Vector2D:
         return math.sqrt(self.x * self.x + self.y * self.y)
 
     def normalized(self):
-        len = self.length()
-        return Vector2D(self.x / len, self.y / len)
+        length = self.length()
+        return Vector2D(self.x / length, self.y / length)
 
 
 def sub(vec1: Vector2D, vec2: Vector2D):

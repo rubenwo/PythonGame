@@ -1,6 +1,8 @@
-import pygame
-import vector
 from typing import List
+
+import pygame
+
+import vector
 
 
 class Component(object):

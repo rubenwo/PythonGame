@@ -1,4 +1,5 @@
 import vector
+from gameobject.components.physics import RigidBodyComponent
 from gameobject.gameobject import Component
 
 
@@ -14,8 +15,12 @@ class MoveToComponent(Component):
         if diff.length() > self.speed * dt:
             diff = diff.normalized()
 
-            self.game_object.position.x = self.game_object.position.x + self.speed * diff.x * dt
-            self.game_object.position.y = self.game_object.position.y + self.speed * diff.y * dt
+            (found, rbc) = self.game_object.get_component(RigidBodyComponent)
+            if found:
+                rbc.apply_force(vector.Vector2D(self.speed * diff.x * dt, self.speed * diff.y * dt))
+
+            # self.game_object.position.x = self.game_object.position.x + self.speed * diff.x * dt
+            # self.game_object.position.y = self.game_object.position.y + self.speed * diff.y * dt
         else:
             self.game_object.position.x = self.destination.x
             self.game_object.position.y = self.destination.y
