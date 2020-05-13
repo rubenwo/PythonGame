@@ -1,4 +1,3 @@
-import random
 from typing import List
 
 import vector
@@ -26,7 +25,8 @@ class RigidBodyComponent(Component):
                     (col, col_pos) = rigid_body_collision(self, rigid_body_comp)
                     # TODO: Add correct physics interaction
                     if col and self.mass <= rigid_body_comp.mass:
-                        self.game_object.position.x += random.randint(-10, 10)
+                        if col_pos.y < self.game_object.position.y:
+                            self.velocity.y = 0
 
         self.acceleration.add(self.gravity)
         self.game_object.position.add(self.velocity)
@@ -45,5 +45,6 @@ def rigid_body_collision(obj1: RigidBodyComponent, obj2: RigidBodyComponent) -> 
                 obj1.game_object.position.y < obj2.game_object.position.y + obj2.height and \
                 obj1.game_object.position.y + obj1.height > obj2.game_object.position.y
 
-    collision_point = vector.Vector2D(0, 0)
+    # TODO: get the point of collision
+    collision_point = vector.Vector2D(0, 400 - 64 - 32 - 1)
     return collision, collision_point

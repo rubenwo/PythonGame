@@ -19,7 +19,7 @@ pygame.display.set_caption("Mario but better")
 
 game_objects = []
 
-bg = pygame.image.load('./resources/textures/background/bg.jpg')
+bg = pygame.image.load('../resources/textures/background/bg.jpg')
 
 player = GameObject(vector.Vector2D(window_width / 2, window_height / 2))
 player.add_component(PlayerComponent(64, 64, game_objects))

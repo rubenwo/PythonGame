@@ -18,7 +18,7 @@ class PlayerComponent(DrawComponent):
         self.velocity = vector.Vector2D(0, 0)
         self.acceleration = vector.Vector2D(0, 0)
 
-        self.texture = pygame.image.load('./resources/textures/player/standing.png')
+        self.texture = pygame.image.load('../resources/textures/player/standing.png')
         self.texture = pygame.transform.scale(self.texture, (self.width, self.height))
 
     def draw(self, win: pygame.Surface):
