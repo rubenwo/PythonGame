@@ -7,7 +7,7 @@ class BrickComponent(DrawComponent):
         super().__init__()
         self.width = width
         self.height = height
-        self.texture = pygame.image.load('../resources/textures/environment/brick.jpg')
+        self.texture = pygame.image.load('../resources/textures/environment/brick.jpg').convert()
         self.texture = pygame.transform.scale(self.texture, (self.width, self.height))
 
     def draw(self, win: pygame.Surface):

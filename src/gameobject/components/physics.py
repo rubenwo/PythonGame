@@ -22,11 +22,10 @@ class RigidBodyComponent(Component):
             if not obj == self.game_object:
                 (found, rigid_body_comp) = obj.get_component(RigidBodyComponent)
                 if found:
-                    (col, col_pos) = rigid_body_collision(self, rigid_body_comp)
+                    col = bounding_box_collision(self, rigid_body_comp)
                     # TODO: Add correct physics interaction
                     if col and self.mass <= rigid_body_comp.mass:
-                        if col_pos.y < self.game_object.position.y:
-                            self.velocity.y = 0
+                        self.velocity.y = 0
 
         self.acceleration.add(self.gravity)
         self.game_object.position.add(self.velocity)
@@ -39,12 +38,10 @@ class RigidBodyComponent(Component):
         self.acceleration.add(force)
 
 
-def rigid_body_collision(obj1: RigidBodyComponent, obj2: RigidBodyComponent) -> (bool, vector.Vector2D):
+def bounding_box_collision(obj1: RigidBodyComponent, obj2: RigidBodyComponent) -> bool:
     collision = obj1.game_object.position.x < obj2.game_object.position.x + obj2.width and \
                 obj1.game_object.position.x + obj1.width > obj2.game_object.position.x and \
                 obj1.game_object.position.y < obj2.game_object.position.y + obj2.height and \
                 obj1.game_object.position.y + obj1.height > obj2.game_object.position.y
 
-    # TODO: get the point of collision
-    collision_point = vector.Vector2D(0, 400 - 64 - 32 - 1)
-    return collision, collision_point
+    return collision

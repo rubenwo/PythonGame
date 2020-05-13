@@ -11,7 +11,7 @@ class EnemyComponent(DrawComponent):
         self.width = width
         self.height = height
 
-        self.texture = pygame.image.load('../resources/textures/enemy/enemy.png')
+        self.texture = pygame.image.load('../resources/textures/enemy/enemy.png').convert()
         self.texture = pygame.transform.scale(self.texture, (self.width, self.height))
 
     def draw(self, win: pygame.Surface):

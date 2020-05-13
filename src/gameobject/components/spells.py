@@ -14,7 +14,7 @@ class FireBallComponent(DrawComponent):
 
         self.width = width
         self.height = height
-        self.texture = pygame.image.load('../resources/textures/spells/fireball.jpg')
+        self.texture = pygame.image.load('../resources/textures/spells/fireball.jpg').convert()
         self.texture = pygame.transform.scale(self.texture, (self.width, self.height))
 
     def draw(self, win: pygame.Surface):
