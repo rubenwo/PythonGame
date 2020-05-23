@@ -30,7 +30,11 @@ class RigidBodyComponent(Component):
                     if bounding_box_collision_x(self, rigid_body_comp) and self.mass <= rigid_body_comp.mass:
                         self.velocity.x = 0
                     if bounding_box_collision_y(self, rigid_body_comp) and self.mass <= rigid_body_comp.mass:
-                        self.velocity.y = 0
+                        if self.game_object.position.y > obj.position.y:
+                            self.game_object.position.y = obj.position.y + rigid_body_comp.height + 5
+                            self.velocity.y = 0.001
+                        else:
+                            self.velocity.y = 0
 
     def apply_force(self, force: vector.Vector2D):
         self.acceleration.add(force)

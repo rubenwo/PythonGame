@@ -55,7 +55,7 @@ class PlayerComponent(DrawComponent):
         if self.direction == Direction.Left:
             direction.x *= -1
             go.position.x -= self.width * 2 - 10
-        go.add_component(FireBallComponent(direction, 25, 25))
+        go.add_component(FireBallComponent(direction, 25, 25, self.game_objects, self.game_object))
         return go
 
     def update(self, delta_time: int):

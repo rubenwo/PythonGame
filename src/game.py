@@ -35,6 +35,11 @@ for n in range(2):
         cube.add_component(RigidBodyComponent(32, 32, game_objects, gravity, 1))
         game_objects.append(cube)
 
+cube = GameObject(vector.Vector2D(150, window_height-150))
+cube.add_component(BrickComponent(32, 32))
+cube.add_component(RigidBodyComponent(32, 32, game_objects, vector.Vector2D(0, 0), 1))
+game_objects.append(cube)
+
 enemy = GameObject(vector.Vector2D(window_width / 2 - 100, window_height / 2))
 enemy.add_component(EnemyComponent(64, 64))
 enemy.add_component(MoveToComponent(vector.Vector2D(0, window_height - 96), 100))

@@ -1,17 +1,22 @@
+from typing import List
+
 import pygame
 
 import vector
-from gameobject.gameobject import DrawComponent
+from gameobject.gameobject import DrawComponent, GameObject
 
 
 # Change width and height to radius
 class FireBallComponent(DrawComponent):
-    def __init__(self, direction: vector.Vector2D, width: int, height: int):
+    def __init__(self, direction: vector.Vector2D, width: int, height: int, game_objects: List[GameObject],
+                 origin: GameObject):
         super().__init__()
         self.direction = direction
         self.velocity = vector.Vector2D(0, 0)
         self.acceleration = vector.Vector2D(0, 0)
 
+        self.game_objects = game_objects
+        self.origin = origin
         self.width = width
         self.height = height
         self.texture = pygame.image.load('../resources/textures/spells/fireball.jpg').convert()
@@ -27,3 +32,8 @@ class FireBallComponent(DrawComponent):
         self.game_object.position.add(self.velocity)
         self.velocity.add(self.acceleration)
         self.acceleration.mult(0)
+
+        for go in self.game_objects:
+            if not go == self.game_object and not go == self.origin:
+                if self.game_object.position.x < go.position.x + 32 and self.game_object.position.x + self.width > go.position.x and self.game_object.position.y < go.position.y + 32 and self.game_object.position.y + self.height > go.position.y:
+                    self.game_objects.remove(go)
